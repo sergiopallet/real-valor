@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-datepicker": "^4.3.4",
     "@types/styled-components": "^5.1.23"
   }
 }
