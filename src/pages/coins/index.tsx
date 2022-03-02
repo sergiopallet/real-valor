@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Input } from "../../components";
+
 import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { timestampToDate, dateToTimestamp } from "../../helpers";
+import { timestampToDate, dateToTimestamp } from "helpers";
+import { Input } from "components";
 
 const Coins = () => {
 
@@ -25,6 +26,9 @@ const Coins = () => {
   const correncyToSearch = "BTC";
   const currencyResult = "USD";
 
+  const yearDate = dateToTimestamp(new Date("02/26/2022"));
+  const TS = `toTs=${yearDate}`;
+
   const fetchHistorycalCurrency = async () => {
     const data = await fetch(generateApiUrl());
     const dataResponse = await data.json();
@@ -33,17 +37,26 @@ const Coins = () => {
     console.log("TimeFrom:", timestampToDate(TimeFrom));
     console.log("TimeTo:", timestampToDate(TimeTo));
 
-    // dataResponse.Data.map((data: any) => {
-    //   console.log("data:", data);
+    // Data.map((data: any) => {
+    //   console.log("time:", timestampToDate(data.time));
     // });
-
 
   }
 
   const generateApiUrl = () => {
-    return BASE_URL + `histoday?fsym=${correncyToSearch}&tsym=${currencyResult}&limit=100`;
+    const url = BASE_URL + `histoday?fsym=${correncyToSearch}&tsym=${currencyResult}&limit=2000&${TS}`;
+    const url2 = "https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=100";
+    return url2;
 
   };
+
+  const getApiDataPointsBasedOnDate = (date: Date) => {
+    const day = date.getDay();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+  }
+
+
 
 
   return (

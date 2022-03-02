@@ -1,12 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import { ThemeProvider } from "styled-components";
+
+import { GlobalStyle } from "styles";
+import reportWebVitals from "./reportWebVitals";
+import { theme } from "styles";
+import "@fontsource/roboto";
+
+import { BrowserRouter, Route } from "react-router-dom";
+import { QueryParamProvider } from "use-query-params";
+import App from "containers/App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <QueryParamProvider ReactRouterRoute={Route}>
+          <App />
+          <GlobalStyle />
+        </QueryParamProvider>
+      </BrowserRouter>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
