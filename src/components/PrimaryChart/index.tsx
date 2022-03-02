@@ -11,16 +11,16 @@ import { localPoint } from "@visx/event";
 import { Line, Bar } from "@visx/shape";
 import { max, min, extent, bisector } from "d3-array";
 import { PrimaryChartProps } from "./interfaces";
-import { DataProps } from "interfaces/DataProps";
+import { ChartDataProps } from "interfaces";
 import LineChart from "components/LineChart";
 import { ColorsEnum, theme } from "styles";
 
 // accessors
-const getDate = (d: DataProps) => new Date(d.date);
-const getStockValue = (d: DataProps) => d?.price || 0;
-const getFormatValue = (d: DataProps) =>
+const getDate = (d: ChartDataProps) => new Date(d.date);
+const getStockValue = (d: ChartDataProps) => d?.price || 0;
+const getFormatValue = (d: ChartDataProps) =>
   numeral(d?.price || 0).format("$0,0.00");
-const bisectDate = bisector<DataProps, Date>((d) => new Date(d.date)).left;
+const bisectDate = bisector<ChartDataProps, Date>((d) => new Date(d.date)).left;
 
 const PrimaryChart: React.FC<PrimaryChartProps> = ({
   data,
@@ -34,7 +34,7 @@ const PrimaryChart: React.FC<PrimaryChartProps> = ({
     tooltipData,
     tooltipTop = 0,
     tooltipLeft = 0,
-  } = useTooltip<DataProps>();
+  } = useTooltip<ChartDataProps>();
 
   // bounds
   const xMax = Math.max(width - margin.left - margin.right, 0);

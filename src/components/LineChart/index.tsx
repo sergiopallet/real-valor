@@ -3,7 +3,7 @@ import { LinePath } from "@visx/shape";
 import { Group } from "@visx/group";
 import { AxisLeft, AxisBottom } from "@visx/axis";
 import { LineChartProps } from "./interfaces";
-import { DataProps } from "interfaces/DataProps";
+import { ChartDataProps } from "interfaces";
 import {
   AXIS_COLOR,
   AXIS_BOTTOM_TICK_LABEL_PROPS,
@@ -27,13 +27,13 @@ const LineChart: React.FC<LineChartProps> = ({
 }) => {
   if (!data) return null;
   // accessors
-  const getDate = (d: DataProps) => new Date(d?.date);
-  const getStockValue = (d: DataProps) => d?.price;
+  const getDate = (d: ChartDataProps) => new Date(d?.date);
+  const getStockValue = (d: ChartDataProps) => d?.price;
 
   if (width < 10) return null;
   return (
     <Group left={left || margin.left} top={top || margin.top}>
-      <LinePath<DataProps>
+      <LinePath<ChartDataProps>
         data={data}
         x={(d) => xScale(getDate(d)) || 0}
         y={(d) => yScale(getStockValue(d)) || 0}

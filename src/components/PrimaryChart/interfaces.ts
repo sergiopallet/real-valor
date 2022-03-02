@@ -1,10 +1,10 @@
-import { DataProps } from "interfaces/DataProps";
+import { ChartDataProps } from "interfaces";
 
 export interface PrimaryChartProps {
-  data: DataProps[];
+  data: ChartDataProps[];
   width: number;
   height: number;
   margin?: { top: number; right: number; bottom: number; left: number };
 }
 
-export type TooltipData = DataProps;
+export type TooltipData = ChartDataProps;
