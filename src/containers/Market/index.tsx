@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Grid, Snackbar, SnackbarCloseReason } from "@material-ui/core";
-import { Skeleton, Alert } from "@material-ui/lab";
+// import { Grid, Snackbar, SnackbarCloseReason } from "@material-ui/core";
+// import { Skeleton, Alert } from "@material-ui/lab";
+import { Grid, Snackbar, SnackbarCloseReason, Skeleton, Alert } from "@mui/material";
 import useAxios from "axios-hooks";
 import PrimaryChart from "components/PrimaryChart";
 import TimeFilterButtons from "components/TimeFilterButtons";
@@ -9,6 +10,7 @@ import useWindowDimensions from "hooks/useWindowDimensions";
 import { ChartDataProps } from "interfaces";
 import { paserApiToChartData } from "helpers";
 import { Input } from "components";
+import ReactDatePicker from "react-datepicker";
 
 const Market = () => {
 
@@ -84,7 +86,7 @@ const Market = () => {
         </SC.MarketHeader>
         {loading ? (
           <Skeleton
-            variant="rect"
+            variant="text"
             height={Math.floor(height * 0.6)}
             width={boxWidth}
           />
@@ -111,11 +113,12 @@ const Market = () => {
         <button onClick={() => { fetch() }}>Buscar</button>
       </Grid>
 
-      <Snackbar open={!!isErrorMessage} onClose={handleError}>
+
+      {/* <Snackbar open={!!isErrorMessage} onClose={handleError}>
         <Alert onClose={handleError} severity="error">
           {isErrorMessage}
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
     </Grid>
 
   );

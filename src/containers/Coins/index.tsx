@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import { useHistory } from "react-router-dom";
 import useAxios from "axios-hooks";
 import numeral from "numeral";
@@ -8,7 +8,7 @@ import CoinChart from "containers/CoinChart";
 import { theme, ColorsEnum } from "styles";
 import { CoinDataProps } from "./interfaces";
 import { SC } from "./styled";
-import { Pagination, Skeleton } from "@material-ui/lab";
+import { Pagination, Skeleton } from "@mui/material";
 import { useQueryParams, NumberParam } from "use-query-params";
 
 const CHART_BOX_SIZE = {
@@ -146,10 +146,10 @@ const Coins = () => {
 
   return (
     <SC.CoinsContainer>
-      <Grid container justify="center">
+      <Grid container >
         <Grid item style={{ overflowX: "auto" }} xs={12} md={10}>
           {loading ? (
-            <Skeleton variant="rect" height="100vh" width="100%" />
+            <Skeleton variant="text" height="100vh" width="100%" />
           ) : (
             <>
               <SC.Table width="100%">
@@ -157,7 +157,7 @@ const Coins = () => {
                 <TableBody />
               </SC.Table>
               <SC.PaginationWrapper>
-                <Pagination
+                {/* <Pagination
                   size="small"
                   count={MAX_PAGE_COUNT}
                   page={queryParams?.page || 1}
@@ -167,7 +167,7 @@ const Coins = () => {
                     });
                     refecth();
                   }}
-                />
+                /> */}
               </SC.PaginationWrapper>
             </>
           )}

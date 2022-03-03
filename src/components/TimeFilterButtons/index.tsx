@@ -1,5 +1,5 @@
 import React from "react";
-import { ToggleButtonGroup, ToggleButton } from "@material-ui/lab";
+import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import useOptionalControlledState from "hooks/useOptionalControlledState";
 import { TimeFilters } from "enums/TimeFilters";
 
@@ -30,7 +30,7 @@ export const TimeFilterButtons: React.FC<{
       size="small"
       value={filter}
       exclusive
-      onChange={(e, v) => {
+      onChange={(e: any, v: any) => {
         setFilter(v);
       }}
       color="primary"
