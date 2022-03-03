@@ -66,7 +66,7 @@ const Market = () => {
   };
 
   return (
-    <Grid container justify="center">
+    <Grid container justifyContent="center">
       <Grid ref={gridItemRef} item xs={12} md={10} lg={8}>
         <SC.MarketHeader>
           <SC.Title>{currence}</SC.Title>
@@ -103,6 +103,7 @@ const Market = () => {
         </Alert>
       </Snackbar>
     </Grid>
+
   );
 };
 
