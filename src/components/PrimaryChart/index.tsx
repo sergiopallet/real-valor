@@ -14,12 +14,12 @@ import { PrimaryChartProps } from "./interfaces";
 import { ChartDataProps } from "interfaces";
 import LineChart from "components/LineChart";
 import { ColorsEnum, theme } from "styles";
+import { formatMoney } from "helpers";
 
 // accessors
 const getDate = (d: ChartDataProps) => new Date(d.date);
 const getStockValue = (d: ChartDataProps) => d?.price || 0;
-const getFormatValue = (d: ChartDataProps) =>
-  numeral(d?.price || 0).format("$0,0.00");
+const getFormatValue = (d: ChartDataProps) => numeral(d?.price || 0).format("$0,0.00");
 const bisectDate = bisector<ChartDataProps, Date>((d) => new Date(d.date)).left;
 
 const PrimaryChart: React.FC<PrimaryChartProps> = ({
@@ -98,9 +98,10 @@ const PrimaryChart: React.FC<PrimaryChartProps> = ({
           xScale={dateScale}
           yScale={priceScale}
           stroke={ColorsEnum.lapislazuli}
-          xTickFormat={(d) => {
-            return numeral(d).format(d <= 100 ? "$0.00" : "$0,0");
-          }}
+          // xTickFormat={(d) => {
+          //   return numeral(d).format(d <= 100 ? "$0.00" : "$0,0");
+          // }}
+          xTickFormat={(d) => formatMoney(d)}
         />
         {/* a transparent ele that track the pointer event, allow us to display tooltup */}
         <Bar
@@ -170,7 +171,7 @@ const PrimaryChart: React.FC<PrimaryChartProps> = ({
                 <b>{format(getDate(tooltipData), "PPpp")}</b>
               </li>
               <li>
-                Price: <b>{`${getFormatValue(tooltipData)}`}</b>
+                Price: <b>{`${formatMoney(tooltipData.price)}`}</b>
               </li>
             </ul>
           </TooltipWithBounds>
