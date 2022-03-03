@@ -7,8 +7,6 @@ import TimeFilterButtons from "components/TimeFilterButtons";
 import { SC } from "./styled";
 import useWindowDimensions from "hooks/useWindowDimensions";
 import { ChartDataProps } from "interfaces";
-import { DataProps } from "interfaces/DataProps";
-import { MarketContext } from "store/MarketProvider";
 import { paserApiToChartData } from "helpers";
 import { Input } from "components";
 
@@ -30,8 +28,6 @@ const Market = () => {
   );
 
   const [initialAmmount, setInitialAmmount] = useState("9000");
-
-
 
   const gridItemRef = React.useRef<HTMLDivElement>(null);
 
@@ -68,8 +64,6 @@ const Market = () => {
 
   }, [data]);
 
-  // console.log("mappedData:", mappedData);
-  // console.log("data:", data);
 
   const handleError = (
     e: React.SyntheticEvent<any>,
@@ -110,8 +104,11 @@ const Market = () => {
           </>
         ) : null}
         valor:
-        <Input onChange={() => { }} />
-        <button onClick={() => { }}>Buscar</button>
+        <Input
+          onChange={(e) => { setInitialAmmount(e.target.value) }}
+          value={initialAmmount}
+        />
+        <button onClick={() => { fetch() }}>Buscar</button>
       </Grid>
 
       <Snackbar open={!!isErrorMessage} onClose={handleError}>
