@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Grid, Snackbar, SnackbarCloseReason } from "@material-ui/core";
 import { Skeleton, Alert } from "@material-ui/lab";
 import useAxios from "axios-hooks";
@@ -10,6 +10,7 @@ import { ChartDataProps } from "interfaces";
 import { DataProps } from "interfaces/DataProps";
 import { MarketContext } from "store/MarketProvider";
 import { paserApiToChartData } from "helpers";
+import { Input } from "components";
 
 const Market = () => {
 
@@ -17,14 +18,20 @@ const Market = () => {
   const [isErrorMessage, setIsErrorMessage] = React.useState<string>("");
   const [boxWidth, setBoxWidth] = React.useState<number>(0);
   const { height } = useWindowDimensions();
-  const currence = "bitcoin";
+  const coinCurrence = "bitcoin";
+  const currence = "brl";
+  const API_URL = `https://api.coingecko.com/api/v3/coins/${coinCurrence}/market_chart?vs_currency=${currence}&days=${timeFilter}`;
   const [{ data, loading, error }, fetch] = useAxios(
     {
-      url: `https://api.coingecko.com/api/v3/coins/${currence}/market_chart?vs_currency=usd&days=${timeFilter}`,
+      url: API_URL,
       method: "GET",
     },
     { manual: true }
   );
+
+  const [initialAmmount, setInitialAmmount] = useState("9000");
+
+
 
   const gridItemRef = React.useRef<HTMLDivElement>(null);
 
@@ -54,9 +61,15 @@ const Market = () => {
     };
   }, [gridItemRef]);
 
-  const mappedData: ChartDataProps[] = React.useMemo(() => {
-    return paserApiToChartData(data);
+  const mappedData: ChartDataProps[] | [] = React.useMemo(() => {
+
+    return data ? paserApiToChartData(data, initialAmmount) : [];
+
+
   }, [data]);
+
+  // console.log("mappedData:", mappedData);
+  // console.log("data:", data);
 
   const handleError = (
     e: React.SyntheticEvent<any>,
@@ -69,7 +82,7 @@ const Market = () => {
     <Grid container justifyContent="center">
       <Grid ref={gridItemRef} item xs={12} md={10} lg={8}>
         <SC.MarketHeader>
-          <SC.Title>{currence}</SC.Title>
+          <SC.Title>{coinCurrence}</SC.Title>
           <TimeFilterButtons
             value={timeFilter}
             onChange={(v) => setTimeFilter(v || "")}
@@ -96,7 +109,11 @@ const Market = () => {
             />
           </>
         ) : null}
+        valor:
+        <Input onChange={() => { }} />
+        <button onClick={() => { }}>Buscar</button>
       </Grid>
+
       <Snackbar open={!!isErrorMessage} onClose={handleError}>
         <Alert onClose={handleError} severity="error">
           {isErrorMessage}

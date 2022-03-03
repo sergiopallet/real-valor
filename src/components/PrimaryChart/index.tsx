@@ -101,7 +101,7 @@ const PrimaryChart: React.FC<PrimaryChartProps> = ({
           // xTickFormat={(d) => {
           //   return numeral(d).format(d <= 100 ? "$0.00" : "$0,0");
           // }}
-          xTickFormat={(d) => formatMoney(d)}
+          xTickFormat={(d) => formatMoney(d, 0)}
         />
         {/* a transparent ele that track the pointer event, allow us to display tooltup */}
         <Bar
