@@ -19,7 +19,7 @@ import { formatMoney } from "helpers";
 // accessors
 const getDate = (d: ChartDataProps) => new Date(d.date);
 const getStockValue = (d: ChartDataProps) => d?.price || 0;
-const getFormatValue = (d: ChartDataProps) => numeral(d?.price || 0).format("$0,0.00");
+// const getFormatValue = (d: ChartDataProps) => numeral(d?.price || 0).format("$0,0.00");
 const bisectDate = bisector<ChartDataProps, Date>((d) => new Date(d.date)).left;
 
 const PrimaryChart: React.FC<PrimaryChartProps> = ({
@@ -103,7 +103,7 @@ const PrimaryChart: React.FC<PrimaryChartProps> = ({
           // }}
           xTickFormat={(d) => formatMoney(d, 0)}
         />
-        {/* a transparent ele that track the pointer event, allow us to display tooltup */}
+
         <Bar
           x={margin.left}
           y={margin.top * 2}
@@ -116,8 +116,7 @@ const PrimaryChart: React.FC<PrimaryChartProps> = ({
           onMouseMove={handleTooltip}
           onMouseLeave={() => hideTooltip()}
         />
-        {/* drawing the line and circle indicator to be display in cursor over a
-          selected area */}
+
         {tooltipData && (
           <g>
             <Line

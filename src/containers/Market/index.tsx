@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 // import { Grid, Snackbar, SnackbarCloseReason } from "@material-ui/core";
 // import { Skeleton, Alert } from "@material-ui/lab";
-import { Grid, Snackbar, SnackbarCloseReason, Skeleton, Alert, TextField } from "@mui/material";
+import { Grid, Snackbar, SnackbarCloseReason, Skeleton, Alert } from "@mui/material";
 import { DatePicker, MuiPickersAdapter } from '@mui/lab';
+
 import useAxios from "axios-hooks";
 import PrimaryChart from "components/PrimaryChart";
 import TimeFilterButtons from "components/TimeFilterButtons";
@@ -11,6 +12,7 @@ import useWindowDimensions from "hooks/useWindowDimensions";
 import { ChartDataProps } from "interfaces";
 import { paserApiToChartData } from "helpers";
 import { Input } from "components";
+import DatePickerSection from "components/DatePickerSection";
 
 const Market = () => {
 
@@ -30,6 +32,8 @@ const Market = () => {
   );
 
   const [initialAmmount, setInitialAmmount] = useState("9000");
+  const [initialDate, setInitialDate] = useState(new Date());
+
 
   const gridItemRef = React.useRef<HTMLDivElement>(null);
 
@@ -110,18 +114,21 @@ const Market = () => {
           onChange={(e) => { setInitialAmmount(e.target.value) }}
           value={initialAmmount}
         />
-        <button onClick={() => { fetch() }}>Buscar</button>
+        <DatePickerSection
+          setValue={setInitialDate}
+          value={initialDate}
+          label={"Data Inicial"}
+        />
+        <button onClick={() => { fetch() }}> Buscar</button>
       </Grid>
       {/* <Snackbar open={!!isErrorMessage} onClose={handleError}>
         <Alert onClose={handleError} severity="error">
           {isErrorMessage}
         </Alert>
       </Snackbar> */}
-      <DatePicker
-        value={3}
-        onChange={(newValue) => { }}
-        renderInput={(params) => <TextField {...params} />}
-      />
+
+
+
     </Grid>
 
 
