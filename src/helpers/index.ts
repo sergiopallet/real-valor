@@ -1,5 +1,22 @@
 import { ChartDataProps, ApiProps } from "interfaces";
+import moment from "moment";
 export { timestampToDate, dateToTimestamp } from "./date";
+
+export const API_BASE_URL = "https://api.coingecko.com/api/v3/";
+
+export const BASE_CURRENCE = "brl";
+export const BASE_LOCALE = "pt-br";
+
+export function marketChartUrl(
+  currency: string,
+  periodInDays: string | number = "1",
+  currencyToConvert: string = BASE_CURRENCE
+) {
+  return (
+    API_BASE_URL +
+    `coins/${currency}/market_chart?vs_currency=${currencyToConvert}&days=${periodInDays}`
+  );
+}
 
 export function paserApiToChartData(
   { prices }: ApiProps,
@@ -16,10 +33,14 @@ export function paserApiToChartData(
 }
 
 export function formatMoney(value: number, fractionDigitis: number = 2) {
-  return value.toLocaleString("pt-br", {
+  return value.toLocaleString(BASE_LOCALE, {
     minimumFractionDigits: fractionDigitis,
     maximumFractionDigits: fractionDigitis,
-    currency: "BRL",
+    currency: BASE_CURRENCE.toUpperCase(),
     style: "currency",
   });
+}
+
+export function dateInDaysUntilToday(date: Date) {
+  return moment().diff(moment(date), "days");
 }

@@ -47,6 +47,8 @@ const PrimaryChart: React.FC<PrimaryChartProps> = ({
       domain: extent(data, getDate) as [Date, Date],
     });
   }, [xMax, data]);
+
+
   const priceScale = useMemo(() => {
     return scaleLinear({
       range: [yMax + margin.top, margin.top],
@@ -98,9 +100,6 @@ const PrimaryChart: React.FC<PrimaryChartProps> = ({
           xScale={dateScale}
           yScale={priceScale}
           stroke={ColorsEnum.lapislazuli}
-          // xTickFormat={(d) => {
-          //   return numeral(d).format(d <= 100 ? "$0.00" : "$0,0");
-          // }}
           xTickFormat={(d) => formatMoney(d, 0)}
         />
 
