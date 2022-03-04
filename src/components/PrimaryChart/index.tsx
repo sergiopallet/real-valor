@@ -16,7 +16,7 @@ import LineChart from "components/LineChart";
 import { ColorsEnum, theme } from "styles";
 import { formatMoney } from "helpers";
 
-// accessors
+
 const getDate = (d: ChartDataProps) => new Date(d.date);
 const getStockValue = (d: ChartDataProps) => d?.price || 0;
 // const getFormatValue = (d: ChartDataProps) => numeral(d?.price || 0).format("$0,0.00");
@@ -36,7 +36,7 @@ const PrimaryChart: React.FC<PrimaryChartProps> = ({
     tooltipLeft = 0,
   } = useTooltip<ChartDataProps>();
 
-  // bounds
+
   const xMax = Math.max(width - margin.left - margin.right, 0);
   const yMax = Math.max(height - margin.top - margin.bottom, 0);
 

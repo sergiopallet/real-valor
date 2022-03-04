@@ -11,7 +11,7 @@ import { SC } from "./styled";
 import useWindowDimensions from "hooks/useWindowDimensions";
 import { ChartDataProps } from "interfaces";
 import { paserApiToChartData } from "helpers";
-import { Input } from "components";
+import { ChartSection, Input } from "components";
 import DatePickerSection from "components/DatePickerSection";
 
 const Market = () => {
@@ -79,57 +79,58 @@ const Market = () => {
   };
 
   return (
-    <Grid container justifyContent="center">
-      <Grid ref={gridItemRef} item xs={12} md={10} lg={8}>
-        <SC.MarketHeader>
-          <SC.Title>{coinCurrence}</SC.Title>
-          <TimeFilterButtons
-            value={timeFilter}
-            onChange={(v) => setTimeFilter(v || "")}
-          />
-        </SC.MarketHeader>
-        {loading ? (
-          <Skeleton
-            variant="text"
-            height={Math.floor(height * 0.6)}
-            width={boxWidth}
-          />
-        ) : mappedData?.length ? (
-          <>
-            <PrimaryChart
-              data={mappedData ?? []}
-              height={Math.floor(height * 0.4)}
-              width={boxWidth}
-              margin={{
-                top: 16,
-                right: 16,
-                bottom: 40,
-                left: 48,
-              }}
+    <>
+      {/* <Grid container justifyContent="center">
+        <Grid ref={gridItemRef} item xs={12} md={10} lg={8}>
+          <SC.MarketHeader>
+            <SC.Title>{coinCurrence}</SC.Title>
+            <TimeFilterButtons
+              value={timeFilter}
+              onChange={(v) => setTimeFilter(v || "")}
             />
-          </>
-        ) : null}
-        valor:
-        <Input
-          onChange={(e) => { setInitialAmmount(e.target.value) }}
-          value={initialAmmount}
-        />
-        <DatePickerSection
-          setValue={setInitialDate}
-          value={initialDate}
-          label={"Data Inicial"}
-        />
-        <button onClick={() => { fetch() }}> Buscar</button>
-      </Grid>
-      {/* <Snackbar open={!!isErrorMessage} onClose={handleError}>
-        <Alert onClose={handleError} severity="error">
-          {isErrorMessage}
-        </Alert>
-      </Snackbar> */}
+          </SC.MarketHeader>
+          {loading ? (
+            <Skeleton
+              variant="text"
+              height={Math.floor(height * 0.6)}
+              width={boxWidth}
+            />
+          ) : mappedData?.length ? (
+            <>
+              <PrimaryChart
+                data={mappedData ?? []}
+                height={Math.floor(height * 0.4)}
+                width={boxWidth}
+                margin={{
+                  top: 16,
+                  right: 16,
+                  bottom: 40,
+                  left: 48,
+                }}
+              />
+            </>
+          ) : null}
+        </Grid>
+      </Grid> */}
 
+      <ChartSection
+        data={mappedData}
+        loading={loading}
+        title={coinCurrence}
+      />
 
-
-    </Grid>
+      valor:
+      <Input
+        onChange={(e) => { setInitialAmmount(e.target.value) }}
+        value={initialAmmount}
+      />
+      <DatePickerSection
+        setValue={setInitialDate}
+        value={initialDate}
+        label={"Data Inicial"}
+      />
+      <button onClick={() => { fetch() }}> Buscar</button>
+    </>
 
 
   );
