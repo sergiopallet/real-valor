@@ -1,6 +1,5 @@
 import { ChartDataProps, ApiProps } from "interfaces";
 import moment from "moment";
-export { timestampToDate, dateToTimestamp } from "./date";
 
 export const API_BASE_URL = "https://api.coingecko.com/api/v3/";
 

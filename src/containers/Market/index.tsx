@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Grid, Snackbar, SnackbarCloseReason, Skeleton, Alert } from "@mui/material";
 import useAxios from "axios-hooks";
-import useWindowDimensions from "hooks/useWindowDimensions";
 import { ChartDataProps } from "interfaces";
 import { dateInDaysUntilToday, marketChartUrl, paserApiToChartData } from "helpers";
 import { ChartSection, Input } from "components";
