@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import useAxios from "axios-hooks";
 import { ChartDataProps } from "types";
-import { dateInDaysUntilToday, marketChartUrl, paserApiToChartData, coins } from "helpers";
-import { ChartSection, CoinSelect, Input } from "components";
+import { dateInDaysUntilToday, marketChartUrl, paserApiToChartData, coins, formatMoney } from "helpers";
+import { Button, ChartSection, CoinSelect, Input } from "components";
 import DatePickerSection from "components/DatePickerSection";
+import styled from "styled-components";
 
+const StyledContainer = styled.div`
+`;
 
 const App = () => {
   const [coinCurrence, setCoinCurrence] = useState("bitcoin");
-  const [initialAmmount, setInitialAmmount] = useState("1000");
+  const [initialAmmount, setInitialAmmount] = useState(1000);
   const [initialDate, setInitialDate] = useState(new Date());
   const [{ data, loading }, fetch] = useAxios(
     {
@@ -30,10 +33,10 @@ const App = () => {
         loading={loading}
         title={coinCurrence}
       />
-      valor:
       <Input
         onChange={(e) => { setInitialAmmount(e.target.value) }}
-        value={initialAmmount}
+        value={formatMoney(initialAmmount)}
+        label={"Valor"}
       />
 
       <DatePickerSection
@@ -41,12 +44,16 @@ const App = () => {
         value={initialDate}
         label="Data Inicial"
       />
-      <button onClick={() => { fetch() }}> Calcular</button>
+
       <CoinSelect
         value={coinCurrence}
         handleChange={setCoinCurrence}
         options={coins}
+      />
 
+      <Button
+        onClick={fetch}
+        title={"Calcular"}
       />
     </section>
   );

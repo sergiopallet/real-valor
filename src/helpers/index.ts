@@ -2,8 +2,6 @@ import { ChartDataProps, ApiProps } from "types";
 import moment from "moment";
 import { CoinSelectOption } from "types";
 
-export const API_BASE_URL = "https://api.coingecko.com/api/v3/";
-
 export const BASE_CURRENCE = "brl";
 export const BASE_LOCALE = "pt-br";
 
@@ -14,7 +12,7 @@ export function marketChartUrl(
   currencyToConvert: string = BASE_CURRENCE
 ) {
   return (
-    API_BASE_URL +
+    process.env.REACT_APP_API_URL +
     `coins/${currency}/market_chart?vs_currency=${currencyToConvert}&days=${periodInDays}`
   );
 }
