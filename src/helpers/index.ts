@@ -1,5 +1,6 @@
 import { ChartDataProps, ApiProps } from "types";
 import moment from "moment";
+import { CoinSelectOption } from "types";
 
 export const API_BASE_URL = "https://api.coingecko.com/api/v3/";
 
@@ -22,12 +23,20 @@ export function paserApiToChartData(
   { prices }: ApiProps,
   initialAmmount: any
 ): ChartDataProps[] {
-  const initialCoinPrice = prices[0][1]; // criar função separada
-  const coinAmmout = initialAmmount / initialCoinPrice;
-  return prices.map((element: number[]) => ({
-    date: new Date(element[0]),
-    price: coinAmmout * element[1],
-  }));
+  return prices.map((element: number[]) => {
+    return {
+      date: new Date(element[0]),
+      price: convertCoinPrice(initialAmmount, prices, element[1]),
+    };
+  });
+}
+
+function convertCoinPrice(
+  initialAmmount: any,
+  prices: number[][],
+  currentPrice: number
+) {
+  return (initialAmmount / prices[0][1]) * currentPrice;
 }
 
 export function formatMoney(value: number, fractionDigitis: number = 2) {
@@ -43,15 +52,8 @@ export function dateInDaysUntilToday(date: Date) {
   return moment().diff(moment(date), "days");
 }
 
-type CoinSelect = {
-  title: string;
-  value: string;
-};
-
-export const coins: CoinSelect[] = [
-  { title: "xrp", value: "xrp" },
-  { title: "bitcoins", value: "bitcoins" },
-  { title: "etherium", value: "etherium" },
+export const coins: CoinSelectOption[] = [
+  { title: "Xrp", value: "ripple" },
+  { title: "Bitcoin", value: "bitcoin" },
+  { title: "ethereum", value: "ethereum" },
 ];
-
-// testes

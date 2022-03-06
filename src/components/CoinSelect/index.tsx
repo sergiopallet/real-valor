@@ -4,18 +4,18 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { options } from 'numeral';
+import { CoinSelectOption } from "types";
 
 type CoinSelectProps = {
   value: string;
-  options: string[];
+  options: CoinSelectOption[];
   handleChange: (v: string) => void;
 }
 
 const CoinSelect = ({ value, options, handleChange }: CoinSelectProps) => {
 
-  const HandleOptions = (options: string[]) => {
-    return options.map((option) => <MenuItem key={option} value={option}>{option}</MenuItem>)
+  const HandleOptions = (options: CoinSelectOption[]) => {
+    return options.map((option: CoinSelectOption) => <MenuItem key={option.value} value={option.value}>{option.title}</MenuItem>)
   }
 
   return (
@@ -25,7 +25,7 @@ const CoinSelect = ({ value, options, handleChange }: CoinSelectProps) => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={"value"}
+          value={value}
           label="Age"
           onChange={(event: SelectChangeEvent) => { handleChange(event.target.value as string) }}
         >
