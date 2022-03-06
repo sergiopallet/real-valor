@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { Grid, Snackbar, SnackbarCloseReason, Skeleton, Alert } from "@mui/material";
 import useAxios from "axios-hooks";
-import { ChartDataProps } from "interfaces";
+import { ChartDataProps } from "types";
 import { dateInDaysUntilToday, marketChartUrl, paserApiToChartData } from "helpers";
-import { ChartSection, Input } from "components";
+import { ChartSection, CoinSelect, Input } from "components";
 import DatePickerSection from "components/DatePickerSection";
+
+
 
 const Market = () => {
 
-  const [isErrorMessage, setIsErrorMessage] = React.useState<string>("");
-  const coinCurrence = "bitcoin";
+  const [coinCurrence, setCoinCurrence] = useState("bitcoin");
   const [initialAmmount, setInitialAmmount] = useState("1000");
   const [initialDate, setInitialDate] = useState(new Date());
-  const [{ data, loading, error }, fetch] = useAxios(
+  const [{ data, loading }, fetch] = useAxios(
     {
       url: marketChartUrl(coinCurrence, dateInDaysUntilToday(initialDate) || 1)
     },
@@ -23,28 +23,10 @@ const Market = () => {
     fetch();
   }, [fetch]);
 
-  React.useEffect(() => {
-    if (error) {
-      setIsErrorMessage(error.message);
-    }
-  }, [error]);
-
-  const mappedData: ChartDataProps[] | [] = React.useMemo(() => {
-
-    return data ? paserApiToChartData(data, initialAmmount) : [];
-
-  }, [data]);
-
-  console.log("aaa");
-  const handleError = (
-    e: React.SyntheticEvent<any>,
-    reason?: SnackbarCloseReason
-  ) => {
-    setIsErrorMessage("");
-  };
+  const mappedData: ChartDataProps[] = React.useMemo(() => data ? paserApiToChartData(data, initialAmmount) : [], [data]);
 
   return (
-    <>
+    <section>
       <ChartSection
         data={mappedData}
         loading={loading}
@@ -55,21 +37,23 @@ const Market = () => {
         onChange={(e) => { setInitialAmmount(e.target.value) }}
         value={initialAmmount}
       />
+
       <DatePickerSection
         setValue={setInitialDate}
         value={initialDate}
-        label={"Data Inicial"}
+        label="Data Inicial"
       />
-      <button onClick={() => { fetch() }}> Buscar</button>
-    </>
+      <button onClick={() => { fetch() }}> Calcular</button>
+      <CoinSelect
+        value={coinCurrence}
+        handleChange={setCoinCurrence}
+        options={['biticoin', 'xrp', 'etherium']}
 
+      />
+    </section>
   );
 };
 
-{/* <Snackbar open={!!isErrorMessage} onClose={handleError}>
-        <Alert onClose={handleError} severity="error">
-          {isErrorMessage}
-        </Alert>
-      </Snackbar> */}
+
 
 export default Market;

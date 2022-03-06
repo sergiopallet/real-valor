@@ -1,5 +1,5 @@
 import { AxisScale } from "@visx/axis";
-import { ChartDataProps } from "interfaces";
+import { ChartDataProps } from "types";
 
 export interface LineChartProps {
   data: ChartDataProps[];

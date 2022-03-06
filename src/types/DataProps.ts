@@ -1,4 +1,4 @@
-export interface DataProps {
+export type DataProps = {
   date: string;
   price: number;
-}
+};

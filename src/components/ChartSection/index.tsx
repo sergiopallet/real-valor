@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Skeleton } from "@mui/material";
-import PrimaryChart from "components/PrimaryChart";
+import { Chart } from "components";
 import { SC } from "./styled"
 import useWindowDimensions from "hooks/useWindowDimensions";
 
@@ -47,7 +47,7 @@ const ChartSection = ({ title, loading, data }: ChartProps) => {
           />
         ) : data?.length ? (
           <>
-            <PrimaryChart
+            <Chart
               data={data ?? []}
               height={Math.floor(height * 0.4)}
               width={boxWidth}

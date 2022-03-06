@@ -1,6 +1,5 @@
 import React, { useMemo, useCallback } from "react";
 import { format } from "date-fns";
-import numeral from "numeral";
 import {
   useTooltip,
   TooltipWithBounds,
@@ -11,7 +10,7 @@ import { localPoint } from "@visx/event";
 import { Line, Bar } from "@visx/shape";
 import { max, min, extent, bisector } from "d3-array";
 import { PrimaryChartProps } from "./interfaces";
-import { ChartDataProps } from "interfaces";
+import { ChartDataProps } from "types";
 import LineChart from "components/LineChart";
 import { ColorsEnum, theme } from "styles";
 import { formatMoney } from "helpers";
@@ -19,7 +18,6 @@ import { formatMoney } from "helpers";
 
 const getDate = (d: ChartDataProps) => new Date(d.date);
 const getStockValue = (d: ChartDataProps) => d?.price || 0;
-// const getFormatValue = (d: ChartDataProps) => numeral(d?.price || 0).format("$0,0.00");
 const bisectDate = bisector<ChartDataProps, Date>((d) => new Date(d.date)).left;
 
 const PrimaryChart: React.FC<PrimaryChartProps> = ({

@@ -11,9 +11,6 @@ interface DatePickerprops {
   setValue: (value: any) => void;
 }
 
-
-
-
 const DatePickerSection = ({ value, setValue, label }: DatePickerprops) => {
   return (
     <LocalizationProvider dateAdapter={DateAdapter}>

@@ -3,7 +3,7 @@ import { LinePath } from "@visx/shape";
 import { Group } from "@visx/group";
 import { AxisLeft, AxisBottom } from "@visx/axis";
 import { LineChartProps } from "./interfaces";
-import { ChartDataProps } from "interfaces";
+import { ChartDataProps } from "types";
 import {
   AXIS_COLOR,
   AXIS_BOTTOM_TICK_LABEL_PROPS,

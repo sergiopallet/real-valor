@@ -1,4 +1,4 @@
-import { ChartDataProps } from "interfaces";
+import { ChartDataProps } from "types";
 
 export interface PrimaryChartProps {
   data: ChartDataProps[];

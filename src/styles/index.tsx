@@ -9,13 +9,6 @@ export enum ColorsEnum {
   red = "#FF4136",
 }
 
-// export const ColorsEnum = {
-//   primary: "#808a9d",
-//   secondary: "#cfd6e4",
-//   lapislazuli: "#26619C",
-//   lime: "#32CD32",
-//   red: "#FF4136",
-// }
 
 export type ColorsType = keyof typeof ColorsEnum;
 
@@ -41,7 +34,7 @@ export const theme: DefaultTheme = {
       regular: 400,
       medium: 500,
       bold: 700,
-      black: 700, // Remove font weight 900 to reduce bundle size, To add later if required
+      black: 700,
     },
   },
   padding: {
@@ -75,7 +68,7 @@ export const theme: DefaultTheme = {
     two:
       "0 -6px 16px -8px rgba(0, 0, 0, 0.08), 0 -9px 28px 0 rgba(0, 0, 0, 0.05)",
   },
-  // TODO: Replace arbitrary numbers with actual values from Haiying
+
   mediaQuery: {
     mobile: {
       screenSize: "575px",
@@ -98,13 +91,13 @@ export const theme: DefaultTheme = {
       fontSize: "12px",
     },
     xlDesktop: {
-      screenSize: "1600px", // Greater than 1600px
+      screenSize: "1600px",
       fontSize: "15px",
     },
   },
 };
 
-// Create a new theme using Nunito Sans
+
 export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Roboto'
