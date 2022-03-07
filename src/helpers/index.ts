@@ -19,18 +19,19 @@ export function marketChartUrl(
 
 export function paserApiToChartData(
   { prices }: ApiProps,
-  initialAmmount: any
+  initialAmmount: number
 ): ChartDataProps[] {
   return prices.map((element: number[]) => {
     return {
       date: new Date(element[0]),
       price: convertCoinPrice(initialAmmount, prices, element[1]),
+      initialAmmount: initialAmmount,
     };
   });
 }
 
 function convertCoinPrice(
-  initialAmmount: any,
+  initialAmmount: number,
   prices: number[][],
   currentPrice: number
 ) {

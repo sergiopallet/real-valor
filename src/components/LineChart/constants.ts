@@ -1,4 +1,4 @@
-import { theme, ColorsEnum } from "styles";
+import { ColorsEnum } from "styles";
 
 export const AXIS_COLOR = ColorsEnum.primary;
 export const AXIS_BOTTOM_TICK_LABEL_PROPS = {

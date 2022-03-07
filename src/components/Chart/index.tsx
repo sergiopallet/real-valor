@@ -12,7 +12,7 @@ import { max, min, extent, bisector } from "d3-array";
 import { PrimaryChartProps } from "./interfaces";
 import { ChartDataProps } from "types";
 import LineChart from "components/LineChart";
-import { ColorsEnum, theme } from "styles";
+import { ColorsEnum } from "styles";
 import { formatMoney } from "helpers";
 
 
@@ -34,7 +34,7 @@ const PrimaryChart: React.FC<PrimaryChartProps> = ({
     tooltipLeft = 0,
   } = useTooltip<ChartDataProps>();
 
-
+  console.log("tooltipData:", tooltipData);
   const xMax = Math.max(width - margin.left - margin.right, 0);
   const yMax = Math.max(height - margin.top - margin.bottom, 0);
 
@@ -164,10 +164,13 @@ const PrimaryChart: React.FC<PrimaryChartProps> = ({
           >
             <ul style={{ padding: "0", margin: "0", listStyle: "none" }}>
               <li style={{ paddingBottom: "0.25rem" }}>
-                <b>{format(getDate(tooltipData), "PPpp")}</b>
+                <b>Data Inicial: {format(getDate(tooltipData), "dd/mm/yyyy")}</b>
               </li>
               <li>
-                Price: <b>{`${formatMoney(tooltipData.price)}`}</b>
+                investimento inicial: <b>{`${formatMoney(tooltipData.price)}`}</b>
+              </li>
+              <li>
+                Valor Atual: <b>{`${formatMoney(tooltipData.price)}`}</b>
               </li>
             </ul>
           </TooltipWithBounds>

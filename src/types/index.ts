@@ -2,6 +2,7 @@ export type ChartDataProps = {
   date: string | Date;
   price: number;
   convertedValue?: number;
+  initialAmmount?: number;
 };
 
 export type ApiProps = {

@@ -4,10 +4,8 @@ import { ChartDataProps } from "types";
 import { dateInDaysUntilToday, marketChartUrl, paserApiToChartData, coins, formatMoney } from "helpers";
 import { Button, ChartSection, CoinSelect, Input } from "components";
 import DatePickerSection from "components/DatePickerSection";
-import styled from "styled-components";
+// import styled from "styled-components";
 
-const StyledContainer = styled.div`
-`;
 
 const App = () => {
   const [coinCurrence, setCoinCurrence] = useState("bitcoin");

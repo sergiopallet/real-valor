@@ -3,12 +3,12 @@ import { Grid, Skeleton } from "@mui/material";
 import { Chart } from "components";
 import { SC } from "./styled"
 import useWindowDimensions from "hooks/useWindowDimensions";
-
+import { ChartDataProps } from "types";
 
 type ChartProps = {
   title: string;
   loading: boolean;
-  data: any;
+  data: ChartDataProps[];
 }
 
 const ChartSection = ({ title, loading, data }: ChartProps) => {
@@ -46,19 +46,17 @@ const ChartSection = ({ title, loading, data }: ChartProps) => {
             width={boxWidth}
           />
         ) : data?.length ? (
-          <>
-            <Chart
-              data={data ?? []}
-              height={Math.floor(height * 0.4)}
-              width={boxWidth}
-              margin={{
-                top: 16,
-                right: 16,
-                bottom: 40,
-                left: 48,
-              }}
-            />
-          </>
+          <Chart
+            data={data ?? []}
+            height={Math.floor(height * 0.4)}
+            width={boxWidth}
+            margin={{
+              top: 16,
+              right: 16,
+              bottom: 40,
+              left: 48,
+            }}
+          />
         ) : null}
       </Grid>
     </Grid>
