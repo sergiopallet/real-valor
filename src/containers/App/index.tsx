@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useAxios from "axios-hooks";
 import { ChartDataProps } from "types";
 import { dateInDaysUntilToday, marketChartUrl, paserApiToChartData, coins, formatMoney } from "helpers";
-import { Button, ChartSection, CoinSelect, Input } from "components";
+import { Button, ChartSection, CoinSelect, InputCurrence } from "components";
 import DatePickerSection from "components/DatePickerSection";
 import styled from "styled-components";
 
@@ -45,7 +45,7 @@ const App = () => {
   return (
     <Container>
       <StyledForm>
-        <Input
+        <InputCurrence
           onChange={(e) => { setInitialAmmount(e.target.value) }}
           value={formatMoney(initialAmmount)}
           label={"Valor"}

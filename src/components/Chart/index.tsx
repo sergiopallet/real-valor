@@ -164,13 +164,16 @@ const PrimaryChart: React.FC<PrimaryChartProps> = ({
           >
             <ul style={{ padding: "0", margin: "0", listStyle: "none" }}>
               <li style={{ paddingBottom: "0.25rem" }}>
-                <b>Data Inicial: {format(getDate(tooltipData), "dd/mm/yyyy")}</b>
+                <b>Data: {format(getDate(tooltipData), "dd/mm/yyyy")}</b>
               </li>
               <li>
-                investimento inicial: <b>{`${formatMoney(tooltipData.price)}`}</b>
+                investimento inicial: <b>{`${formatMoney(tooltipData.initialAmmount)}`}</b>
               </li>
               <li>
                 Valor Atual: <b>{`${formatMoney(tooltipData.price)}`}</b>
+              </li>
+              <li>
+                Rentabilidade: <b>{`${formatMoney(tooltipData.rentability)}`}</b>
               </li>
             </ul>
           </TooltipWithBounds>

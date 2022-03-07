@@ -25,6 +25,8 @@ export function paserApiToChartData(
       date: new Date(element[0]),
       price: convertCoinPrice(initialAmmount, prices, element[1]),
       initialAmmount: initialAmmount,
+      rentability:
+        convertCoinPrice(initialAmmount, prices, element[1]) - initialAmmount,
     };
   });
 }
