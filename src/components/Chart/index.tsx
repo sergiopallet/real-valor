@@ -34,7 +34,7 @@ const PrimaryChart: React.FC<PrimaryChartProps> = ({
     tooltipLeft = 0,
   } = useTooltip<ChartDataProps>();
 
-  console.log("tooltipData:", tooltipData);
+
   const xMax = Math.max(width - margin.left - margin.right, 0);
   const yMax = Math.max(height - margin.top - margin.bottom, 0);
 

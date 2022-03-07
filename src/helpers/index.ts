@@ -5,7 +5,6 @@ import { CoinSelectOption } from "types";
 export const BASE_CURRENCE = "brl";
 export const BASE_LOCALE = "pt-br";
 
-// url factory
 export function marketChartUrl(
   currency: string,
   periodInDays: string | number = 1,

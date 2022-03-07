@@ -1,5 +1,4 @@
 import { InputLabel, MenuItem, Box, SelectChangeEvent, Select } from '@mui/material/';
-// import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { CoinSelectOption } from "types";
 
 type CoinSelectProps = {
@@ -22,6 +21,7 @@ const CoinSelect = ({ value, options, handleChange }: CoinSelectProps) => {
         id="demo-simple-select"
         value={value}
         onChange={(event: SelectChangeEvent) => { handleChange(event.target.value as string) }}
+        style={{ width: "100%" }}
       >
         {HandleOptions(options)}
       </Select>

@@ -2,12 +2,12 @@ import { Button as ButtonMui } from '@mui/material/';
 
 
 type ButtonProps = {
-  title: string;
   onClick?: () => void;
   disabled?: boolean;
+  children: React.ReactNode
 }
-const Button = ({ title, onClick, disabled }: ButtonProps) => {
-  return <ButtonMui variant="outlined" onClick={onClick}>{title}</ButtonMui>
+const Button = ({ onClick, disabled, children }: ButtonProps) => {
+  return <ButtonMui variant="outlined" onClick={onClick} disabled={disabled} >{children}</ButtonMui>
 }
 
 export default Button;

@@ -4,7 +4,26 @@ import { ChartDataProps } from "types";
 import { dateInDaysUntilToday, marketChartUrl, paserApiToChartData, coins, formatMoney } from "helpers";
 import { Button, ChartSection, CoinSelect, Input } from "components";
 import DatePickerSection from "components/DatePickerSection";
-// import styled from "styled-components";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display:flex ;
+  justify-content: space-between;
+  flex-wrap:wrap ;
+`;
+
+const StyledSection = styled.section`
+  flex:1;
+  border:1px solid purple;
+  padding: 20px;
+`;
+
+const StyledForm = styled.section`
+  display: flex ;
+  flex-direction:  column;
+  gap:20px ;
+
+`;
 
 
 const App = () => {
@@ -25,35 +44,33 @@ const App = () => {
   const mappedData: ChartDataProps[] = React.useMemo(() => data ? paserApiToChartData(data, initialAmmount) : [], [data]);
 
   return (
-    <section>
-      <ChartSection
-        data={mappedData}
-        loading={loading}
-        title={coinCurrence}
-      />
-      <Input
-        onChange={(e) => { setInitialAmmount(e.target.value) }}
-        value={formatMoney(initialAmmount)}
-        label={"Valor"}
-      />
-
-      <DatePickerSection
-        setValue={setInitialDate}
-        value={initialDate}
-        label="Data Inicial"
-      />
-
-      <CoinSelect
-        value={coinCurrence}
-        handleChange={setCoinCurrence}
-        options={coins}
-      />
-
-      <Button
-        onClick={fetch}
-        title={"Calcular"}
-      />
-    </section>
+    <Container>
+      <StyledForm>
+        <Input
+          onChange={(e) => { setInitialAmmount(e.target.value) }}
+          value={formatMoney(initialAmmount)}
+          label={"Valor"}
+        />
+        <DatePickerSection
+          setValue={setInitialDate}
+          value={initialDate}
+          label="Data Inicial"
+        />
+        <CoinSelect
+          value={coinCurrence}
+          handleChange={setCoinCurrence}
+          options={coins}
+        />
+        <Button onClick={fetch}> Calcular </Button>
+      </StyledForm>
+      <StyledSection>
+        <ChartSection
+          data={mappedData}
+          loading={loading}
+          title={coinCurrence}
+        />
+      </StyledSection>
+    </Container>
   );
 };
 
