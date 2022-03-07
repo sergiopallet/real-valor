@@ -14,7 +14,6 @@ const Container = styled.div`
 
 const StyledSection = styled.section`
   flex:1;
-  border:1px solid purple;
   padding: 20px;
 `;
 
